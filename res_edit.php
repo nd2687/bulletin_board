@@ -13,11 +13,11 @@ if(!isset($id) && !isset($thread_id)) {
 $type = (isset($_POST['type']))? $_POST['type'] : null;
 
 $sql_res = "SELECT * FROM responses where id = " . $id;
-$result_thread = $conn->query($sql_res);
+$result_thread = $pdo->query($sql_res);
 $res = $result_thread->fetch();
 
 if($type=='patch') {
-  $sql_res = $conn->prepare("UPDATE responses set name=:name, body=:body where id=:id");
+  $sql_res = $pdo->prepare("UPDATE responses set name=:name, body=:body where id=:id");
   $sql_res->bindParam(':name', $_POST['name']);
   $sql_res->bindParam(':body', $_POST['body']);
   $sql_res->bindParam(':id', $id);

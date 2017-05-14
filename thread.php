@@ -4,12 +4,12 @@ require 'database.php';
 
 $id = $_GET['id'];
 
-$sql_thread = $conn->prepare("SELECT * FROM threads where id = :id");
+$sql_thread = $pdo->prepare("SELECT * FROM threads where id = :id");
 $sql_thread->bindParam(':id', $id);
 $sql_thread->execute();
 $thread = $sql_thread->fetch();
 
-$sql_res = $conn->prepare("SELECT * FROM responses where thread_id = :id order by created_at desc");
+$sql_res = $pdo->prepare("SELECT * FROM responses where thread_id = :id order by created_at desc");
 $sql_res->bindParam(':id', $id);
 $sql_res->execute();
 

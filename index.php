@@ -6,7 +6,7 @@ require 'database.php';
 
 if( isset($_SESSION['user_id']) ){
 
-    $records = $conn->prepare('SELECT id,email,password FROM users WHERE id = :id');
+    $records = $pdo->prepare('SELECT id,email,password FROM users WHERE id = :id');
     $records->bindParam(':id', $_SESSION['user_id']);
     $records->execute();
     $results = $records->fetch(PDO::FETCH_ASSOC);
@@ -22,10 +22,10 @@ if( isset($_SESSION['user_id']) ){
           $search_word = $_POST['search_word'];
           $like_search_word = "'%".$search_word."%'";
           $sql = "SELECT * FROM threads WHERE title LIKE " . $like_search_word . " order by created_at desc";
-          $result = $conn->query($sql);
+          $result = $pdo->query($sql);
     }else{
           $sql = "SELECT * FROM threads order by created_at desc";
-          $result = $conn->query($sql);
+          $result = $pdo->query($sql);
 
           $type = (isset($_POST['type']))? $_POST['type'] : null;
           $id = (isset($_POST['id']))? $_POST['id'] : null;
@@ -33,7 +33,7 @@ if( isset($_SESSION['user_id']) ){
           if($type=='delete' && isset($id)) {
 
             $sql_thread = "DELETE FROM threads WHERE id=' . $id '";
-            $result_thread = $conn->query($sql_thread);
+            $result_thread = $pdo->query($sql_thread);
 
             header("Location: index.php");
           }

@@ -18,7 +18,7 @@ if($type=='create') {
 
   } else {
 
-      $sql_res = $conn->prepare("INSERT INTO responses set thread_id = :id, name = :name, body = :body, created_at = now()");
+      $sql_res = $pdo->prepare("INSERT INTO responses set thread_id = :id, name = :name, body = :body, created_at = now()");
       $sql_res->bindParam(':id', $id);
       $sql_res->bindParam(':name', $name);
       $sql_res->bindParam(':body', $_POST['body']);

@@ -10,7 +10,7 @@ require 'database.php';
 
 if(!empty($_POST['email']) && !empty($_POST['password'])):
 
-    $records = $conn->prepare('SELECT * FROM users WHERE email = :email');
+    $records = $pdo->prepare('SELECT * FROM users WHERE email = :email');
     $records->bindParam(':email', $_POST['email']);
     $records->execute();
     $results = $records->fetch(PDO::FETCH_ASSOC);

@@ -4,7 +4,7 @@ require 'database.php';
 
 //論理削除以外
 $sql = "SELECT * FROM users WHERE unsubscribe_flag = 0";
-$result = $conn->query($sql);
+$result = $pdo->query($sql);
 
 ?>
 

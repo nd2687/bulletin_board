@@ -11,7 +11,7 @@ if($type=='create') {
     exit();
   }
 
-  $new_record = $conn->prepare("INSERT INTO threads SET title=:title, body=:body, created_at=now()");
+  $new_record = $pdo->prepare("INSERT INTO threads SET title=:title, body=:body, created_at=now()");
   $new_record->bindParam(':title', $_POST['title']);
   $new_record->bindParam(':body', $_POST['body']);
   $new_record->execute();
