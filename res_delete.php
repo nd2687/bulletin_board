@@ -11,8 +11,9 @@ $id = (isset($_POST['id']))? $_POST['id'] : null;
 
 if($type=='delete' && isset($response_id)) {
 
-  $sql_thread = "DELETE FROM responses WHERE id=" . $response_id;
-  $result_thread = $pdo->query($sql_thread);
+  $stmt = $pdo->prepare("DELETE FROM responses WHERE id = :id");
+  $stmt->bindParam(':id', $response_id);
+  $stmt->execute();
 
   header("Location: thread.php?id=" . $id);
 

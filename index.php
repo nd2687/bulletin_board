@@ -22,18 +22,18 @@ if( isset($_SESSION['user_id']) ){
           $search_word = $_POST['search_word'];
           $like_search_word = "'%".$search_word."%'";
           $sql = "SELECT * FROM threads WHERE title LIKE " . $like_search_word . " order by created_at desc";
-          $result = $pdo->query($sql);
+          $rows = $pdo->query($sql);
     }else{
           $sql = "SELECT * FROM threads order by created_at desc";
-          $result = $pdo->query($sql);
+          $rows = $pdo->query($sql);
 
           $type = (isset($_POST['type']))? $_POST['type'] : null;
           $id = (isset($_POST['id']))? $_POST['id'] : null;
 
           if($type=='delete' && isset($id)) {
 
-            $sql_thread = "DELETE FROM threads WHERE id=' . $id '";
-            $result_thread = $pdo->query($sql_thread);
+            $stmt = $pdo->prepare("DELETE FROM threads WHERE id = :id");
+            $stmt->execute(':id', $id);
 
             header("Location: index.php");
           }
@@ -83,7 +83,7 @@ if( isset($_SESSION['user_id']) ){
     <p><a href="thread_new.php">スレッド作成</a></p>
 
     <table align="center">
-    <?php while($thread = $result->fetch() ): ?>
+    <?php while($thread = $rows->fetch() ): ?>
         <tr>
             <td class="thread-list">
                 <a href="thread.php?id=<?php echo $thread['id'];?>"><?php echo $thread['title'];?></a>
