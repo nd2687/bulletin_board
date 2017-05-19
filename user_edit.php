@@ -73,7 +73,7 @@ if($type=='patch') {
 
     <form action="user_edit.php" method="POST">
 
-<!-- confirmation -->
+    <?php // confirmation ?>
         <input type="text" placeholder="Enter your email" name="email" value="<?php echo $user['email']; ?>">
         <input type="password" placeholder="and password" name="password">
         <input type="password" placeholder="confirm password" name="confirm_password">

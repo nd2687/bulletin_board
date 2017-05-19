@@ -55,7 +55,7 @@ endif;
 
     <form action="register.php" method="POST">
 
-<!-- confirm -->
+    <?php // confirmation ?>
 
         <input type="text" placeholder="Enter your email" name="email">
         <input type="password" placeholder="and password" name="password">
