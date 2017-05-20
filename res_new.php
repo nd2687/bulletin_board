@@ -12,11 +12,7 @@ if($type=='create') {
 
   $name = $_POST['name'] ? $_POST['name'] : "名無し";
 
-  if(empty($_POST['body'])){
-
-      $message = "At least the text alone.";
-
-  } else {
+  if(isset($_POST['body'])){
 
       $sql_res = $pdo->prepare("INSERT INTO responses set thread_id = :id, name = :name, body = :body, created_at = now()");
       $sql_res->bindParam(':id', $id);
@@ -25,6 +21,10 @@ if($type=='create') {
       $sql_res->execute();
 
       header("Location: thread.php?id=" . $id);
+
+  } else {
+
+      $message = "At least the text alone.";
 
   }
 }
@@ -47,7 +47,7 @@ if($type=='create') {
         <a href="/">Bulletin Board</a>
     </div>
 
-    <?php if(!empty($message)): ?>
+    <?php if(isset($message)): ?>
         <p><?= $message ?></p>
     <?php endif; ?>
 

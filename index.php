@@ -54,7 +54,7 @@ if( isset($_SESSION['user_id']) ){
         <a href="/">Bulletin Board</a>
     </div>
 
-    <?php if( !empty($user) ): ?>
+    <?php if( isset($user) ): ?>
 
         <br />Welcome <?= $user['email']; ?>
         <br /><br />You are successfully logged in!

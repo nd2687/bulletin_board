@@ -10,7 +10,7 @@ require 'database.php';
 
 $message = '';
 
-if(!empty($_POST['email']) && !empty($_POST['password'])):
+if(isset($_POST['email']) && isset($_POST['password'])):
 
     // Enter the new user in the database
     $sql = "INSERT INTO users (email, password) VALUES (:email, :password)";
@@ -46,7 +46,7 @@ endif;
         <a href="/">Bulletin Board</a>
     </div>
 
-    <?php if(!empty($message)): ?>
+    <?php if(isset($message)): ?>
         <p><?= $message ?></p>
     <?php endif; ?>
 

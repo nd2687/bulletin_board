@@ -8,7 +8,7 @@ if( isset($_SESSION['user_id']) ){
 
 require 'database.php';
 
-if(!empty($_POST['email']) && !empty($_POST['password'])):
+if(isset($_POST['email']) && isset($_POST['password'])):
 
     $records = $pdo->prepare('SELECT * FROM users WHERE email = :email');
     $records->bindParam(':email', $_POST['email']);
@@ -53,7 +53,7 @@ endif;
         <a href="/">Bulletin Board</a>
     </div>
 
-    <?php if(!empty($message)): ?>
+    <?php if(isset($message)): ?>
         <p><?= $message ?></p>
     <?php endif; ?>
 

@@ -25,7 +25,7 @@ $type = (isset($_POST['type']))? $_POST['type'] : null;
 
 if($type=='patch') {
 
-    if(!empty($_POST['password'])){
+    if(isset($_POST['password'])){
         $stmt = $pdo->prepare("UPDATE users set email=:email, password=:password where id=:id");
         $email = (isset($_POST['email']))? $_POST['email'] : $user['email'];
         $stmt->bindParam(':email', $email);
@@ -64,7 +64,7 @@ if($type=='patch') {
         <a href="/">Bulletin Board</a>
     </div>
 
-    <?php if(!empty($message)): ?>
+    <?php if(isset($message)): ?>
         <p><?= $message ?></p>
     <?php endif; ?>
 
