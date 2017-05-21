@@ -2,10 +2,10 @@
 
 require 'database.php';
 
-$id = ($_GET['id']) ?: null;
-$thread_id = ($_GET['thread_id']) ?: null;
+$id = (@$_GET['id']) ?: null;
+$thread_id = (@$_GET['thread_id']) ?: null;
 
-if(!isset($id) && !isset($thread_id)) {
+if(empty($id) && empty($thread_id)) {
   $id = ($_POST['id']) ?: null;
   $thread_id = ($_POST['thread_id']) ?: null;
 }
