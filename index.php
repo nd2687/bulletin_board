@@ -27,8 +27,8 @@ if( isset($_SESSION['user_id']) ){
           $sql = "SELECT * FROM threads order by created_at desc";
           $rows = $pdo->query($sql);
 
-          $type = (isset($_POST['type']))? $_POST['type'] : null;
-          $id = (isset($_POST['id']))? $_POST['id'] : null;
+          $type = (@$_POST['type']) ?: null;
+          $id = (@$_POST['id']) ?: null;
 
           if($type=='delete' && isset($id)) {
 

@@ -2,15 +2,15 @@
 
 require 'database.php';
 
-$id = (isset($_GET['id']))? $_GET['id'] : null;
-$type = (isset($_POST['type']))? $_POST['type'] : null;
+$id = ($_GET['id']) ?: null;
+$type = (@$_POST['type']) ?: null;
 
 $message = '';
 
 if($type=='create') {
   $id = $_POST['id'];
 
-  $name = $_POST['name'] ? $_POST['name'] : "名無し";
+  $name = $_POST['name'] ?: "名無し";
 
   if(isset($_POST['body'])){
 

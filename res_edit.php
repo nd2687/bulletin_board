@@ -2,15 +2,15 @@
 
 require 'database.php';
 
-$id = (isset($_GET['id']))? $_GET['id'] : null;
-$thread_id = (isset($_GET['thread_id']))? $_GET['thread_id'] : null;
+$id = ($_GET['id']) ?: null;
+$thread_id = ($_GET['thread_id']) ?: null;
 
 if(!isset($id) && !isset($thread_id)) {
-  $id = (isset($_POST['id']))? $_POST['id'] : null;
-  $thread_id = (isset($_POST['thread_id']))? $_POST['thread_id'] : null;
+  $id = ($_POST['id']) ?: null;
+  $thread_id = ($_POST['thread_id']) ?: null;
 }
 
-$type = (isset($_POST['type']))? $_POST['type'] : null;
+$type = (@$_POST['type']) ?: null;
 
 $sql_res = "SELECT * FROM responses where id = " . $id;
 $result_thread = $pdo->query($sql_res);

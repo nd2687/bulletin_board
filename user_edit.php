@@ -21,20 +21,20 @@ if( isset($_SESSION['user_id']) ){
 }
 
 
-$type = (isset($_POST['type']))? $_POST['type'] : null;
+$type = (@$_POST['type']) ?: null;
 
 if($type=='patch') {
 
     if(isset($_POST['password'])){
         $stmt = $pdo->prepare("UPDATE users set email=:email, password=:password where id=:id");
-        $email = (isset($_POST['email']))? $_POST['email'] : $user['email'];
+        $email = ($_POST['email']) ?: $user['email'];
         $stmt->bindParam(':email', $email);
         $password_hash = password_hash($_POST['password'], PASSWORD_BCRYPT);
         $stmt->bindParam(':password', $password_hash);
         $stmt->bindParam(':id', $user['id']);
     }else{
         $stmt = $pdo->prepare("UPDATE users set email=:email where id=:id");
-        $email = (isset($_POST['email']))? $_POST['email'] : $user['email'];
+        $email = ($_POST['email']) ?: $user['email'];
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':id', $user['id']);
     }

@@ -2,7 +2,7 @@
 
 require 'database.php';
 
-$type = (isset($_POST['type']))? $_POST['type'] : null;
+$type = (@$_POST['type']) ?: null;
 
 if($type=='create') {
 
