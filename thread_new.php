@@ -4,7 +4,7 @@ require 'database.php';
 
 $type = (@$_POST['type']) ?: null;
 
-if($type=='create') {
+if ($type == 'create') {
 
   if(empty($_POST['title']) || empty($_POST['body'])){
     header("Location: thread_new.php");
@@ -21,6 +21,7 @@ if($type=='create') {
 
 ?>
 
+<!DOCTYPE>
 <html>
 <head>
 

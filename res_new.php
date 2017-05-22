@@ -7,12 +7,12 @@ $type = (@$_POST['type']) ?: null;
 
 $message = '';
 
-if($type=='create') {
+if ($type == 'create') {
   $id = $_POST['id'];
 
   $name = $_POST['name'] ?: "名無し";
 
-  if(isset($_POST['body'])){
+  if (isset($_POST['body'])) {
 
       $sql_res = $pdo->prepare("INSERT INTO responses set thread_id = :id, name = :name, body = :body, created_at = now()");
       $sql_res->bindParam(':id', $id);

@@ -9,7 +9,7 @@ $type = ($_POST['type']) ?: null;
 $response_id = ($_POST['response_id']) ?: null;
 $id = ($_POST['id']) ?: null;
 
-if($type=='delete' && isset($response_id)) {
+if ($type == 'delete' && isset($response_id)) {
 
   $stmt = $pdo->prepare("DELETE FROM responses WHERE id = :id");
   $stmt->bindParam(':id', $response_id);

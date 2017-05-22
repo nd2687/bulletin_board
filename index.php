@@ -4,7 +4,7 @@ session_start();
 
 require 'database.php';
 
-if( isset($_SESSION['user_id']) ){
+if (isset($_SESSION['user_id'])) {
 
     $records = $pdo->prepare('SELECT id,email,password FROM users WHERE id = :id');
     $records->bindParam(':id', $_SESSION['user_id']);
@@ -13,31 +13,32 @@ if( isset($_SESSION['user_id']) ){
 
     $user = NULL;
 
-    if( count($results) > 0) {
+    if (count($results) > 0) {
         $user = $results;
     }
 }
 
-    if(isset($_POST['search_word']) ){
-          $search_word = $_POST['search_word'];
-          $like_search_word = "'%".$search_word."%'";
-          $sql = "SELECT * FROM threads WHERE title LIKE " . $like_search_word . " order by created_at desc";
-          $rows = $pdo->query($sql);
-    }else{
-          $sql = "SELECT * FROM threads order by created_at desc";
-          $rows = $pdo->query($sql);
+if (isset($_POST['search_word'])) {
+      $search_word = $_POST['search_word'];
+      $like_search_word = "'%".$search_word."%'";
+      $sql = "SELECT * FROM threads WHERE title LIKE " . $like_search_word . " order by created_at desc";
+      $rows = $pdo->query($sql);
+} else {
+      $sql = "SELECT * FROM threads order by created_at desc";
+      $rows = $pdo->query($sql);
 
-          $type = (@$_POST['type']) ?: null;
-          $id = (@$_POST['id']) ?: null;
+      $type = (@$_POST['type']) ?: null;
+      $id = (@$_POST['id']) ?: null;
 
-          if($type=='delete' && isset($id)) {
+      if ($type=='delete' && isset($id)) {
 
-            $stmt = $pdo->prepare("DELETE FROM threads WHERE id = :id");
-            $stmt->execute(':id', $id);
+        $stmt = $pdo->prepare("DELETE FROM threads WHERE id = :id");
+        $stmt->execute(':id', $id);
 
-            header("Location: index.php");
-          }
-    }
+        header("Location: index.php");
+      }
+}
+
 ?>
 
 <!DOCTYPE html>

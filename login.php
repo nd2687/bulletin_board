@@ -2,13 +2,13 @@
 
 session_start();
 
-if( isset($_SESSION['user_id']) ){
+if (isset($_SESSION['user_id'])) {
     header("Location: /");
 }
 
 require 'database.php';
 
-if(isset($_POST['email']) && isset($_POST['password'])):
+if (isset($_POST['email']) && isset($_POST['password'])):
 
     $records = $pdo->prepare('SELECT * FROM users WHERE email = :email');
     $records->bindParam(':email', $_POST['email']);
@@ -17,7 +17,7 @@ if(isset($_POST['email']) && isset($_POST['password'])):
 
     $message = '';
 
-    if( (int)$results['unsubscribe_flag'] !== 0){
+    if ((int)$results['unsubscribe_flag'] !== 0) {
 
         $message = 'This account is unsubscribed.';
 

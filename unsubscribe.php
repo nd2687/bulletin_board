@@ -4,7 +4,7 @@ session_start();
 
 require 'database.php';
 
-if( isset($_SESSION['user_id']) ){
+if (isset($_SESSION['user_id'])) {
 
     $records = $pdo->prepare('SELECT id,email,password FROM users WHERE id = :id');
     $records->bindParam(':id', $_SESSION['user_id']);

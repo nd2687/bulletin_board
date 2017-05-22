@@ -6,7 +6,7 @@ require 'database.php';
 
 $message = '';
 
-if( isset($_SESSION['user_id']) ){
+if (isset($_SESSION['user_id'])) {
 
     $records = $pdo->prepare('SELECT id,email,password FROM users WHERE id = :id');
     $records->bindParam(':id', $_SESSION['user_id']);
@@ -15,7 +15,7 @@ if( isset($_SESSION['user_id']) ){
 
     $user = NULL;
 
-    if( count($results) > 0) {
+    if (count($results) > 0) {
         $user = $results;
     }
 }
@@ -23,23 +23,23 @@ if( isset($_SESSION['user_id']) ){
 
 $type = (@$_POST['type']) ?: null;
 
-if($type=='patch') {
+if ($type == 'patch') {
 
-    if(isset($_POST['password'])){
+    if (isset($_POST['password'])) {
         $stmt = $pdo->prepare("UPDATE users set email=:email, password=:password where id=:id");
         $email = ($_POST['email']) ?: $user['email'];
         $stmt->bindParam(':email', $email);
         $password_hash = password_hash($_POST['password'], PASSWORD_BCRYPT);
         $stmt->bindParam(':password', $password_hash);
         $stmt->bindParam(':id', $user['id']);
-    }else{
+    } else {
         $stmt = $pdo->prepare("UPDATE users set email=:email where id=:id");
         $email = ($_POST['email']) ?: $user['email'];
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':id', $user['id']);
     }
 
-    if( $stmt->execute() ):
+    if ($stmt->execute()):
         $message = 'Successfully updated your profile';
     else:
         $message = 'Sorry there must have been an issue updating your profile';

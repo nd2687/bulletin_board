@@ -8,7 +8,7 @@ $result = $pdo->query($sql);
 $type = ($_POST['type']) ?: null;
 $id = ($_POST['id']) ?: null;
 
-if($type=='delete' && isset($id)) {
+if ($type=='delete' && isset($id)) {
 
   $sql_thread = $pdo->prepare("DELETE FROM threads WHERE id=:id");
   $sql_thread->bindParam(':id', $id);

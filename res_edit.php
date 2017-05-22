@@ -5,7 +5,7 @@ require 'database.php';
 $id = (@$_GET['id']) ?: null;
 $thread_id = (@$_GET['thread_id']) ?: null;
 
-if(empty($id) && empty($thread_id)) {
+if (empty($id) && empty($thread_id)) {
   $id = ($_POST['id']) ?: null;
   $thread_id = ($_POST['thread_id']) ?: null;
 }
@@ -16,7 +16,7 @@ $sql_res = "SELECT * FROM responses where id = " . $id;
 $result_thread = $pdo->query($sql_res);
 $res = $result_thread->fetch();
 
-if($type=='patch') {
+if ($type == 'patch') {
   $sql_res = $pdo->prepare("UPDATE responses set name=:name, body=:body where id=:id");
   $sql_res->bindParam(':name', $_POST['name']);
   $sql_res->bindParam(':body', $_POST['body']);
@@ -25,6 +25,7 @@ if($type=='patch') {
 
   header("Location: thread.php?id=" . $thread_id);
 }
+
 ?>
 
 <html>
