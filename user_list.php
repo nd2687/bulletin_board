@@ -28,7 +28,7 @@ $result = $pdo->query($sql);
 
     <ul>
     <?php while($user = $result->fetch() ): ?>
-        <li><?php echo $user['id']; ?> | <?php echo $user['email']; ?></li>
+        <li><?= $user['id'] ?> | <?= $user['email'] ?></li>
     <?php endwhile; ?>
     </ul>
 </body>

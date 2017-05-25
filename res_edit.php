@@ -45,16 +45,16 @@ if ($type == 'patch') {
       <table align="center">
         <tr>
           <th>名前</th>
-          <td><input type="text" name="name" value="<?php echo $res['name'];?>"/></td>
+          <td><input type="text" name="name" value="<?= $res['name'] ?>"/></td>
         </tr>
         <tr>
           <th>内容</th>
-          <td><textarea name="body"><?php echo $res['body'];?></textarea></td>
+          <td><textarea name="body"><?= $res['body'] ?></textarea></td>
         </tr>
         <tr>
           <td>
-            <input type="hidden" name="id" value="<?php echo $id;?>" />
-            <input type="hidden" name="thread_id" value="<?php echo $thread_id;?>" />
+            <input type="hidden" name="id" value="<?= $id ?>" />
+            <input type="hidden" name="thread_id" value="<?= $thread_id ?>" />
             <input type="hidden" name="type" value="patch" />
           </td>
           <td><input type="submit" name="submit" value="更新" /></td>

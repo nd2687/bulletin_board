@@ -87,9 +87,9 @@ if (isset($_POST['search_word'])) {
     <?php while($thread = $rows->fetch() ): ?>
         <tr>
             <td class="thread-list">
-                <a href="thread.php?id=<?php echo $thread['id'];?>"><?php echo $thread['title'];?></a>
+                <a href="thread.php?id=<?= $thread['id'] ?>"><?= $thread['title'] ?></a>
             </td>
-            <td><?php echo $thread['created_at'];?></td>
+            <td><?= $thread['created_at'] ?></td>
             <td>
                 <form method='post' action='thread_delete.php' onsubmit="return confirm('Are you sure?\nIt cannot be undone.');">
                     <td><input type="hidden" name="type" value="delete" /></td>
@@ -98,7 +98,7 @@ if (isset($_POST['search_word'])) {
                 </form>
             </td>
         </tr>
-    <?php endwhile;?>
+    <?php endwhile; ?>
     </table>
 </body>
 </html>

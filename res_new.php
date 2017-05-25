@@ -63,7 +63,7 @@ if ($type == 'create') {
                 </tr>
                 <tr>
                       <td>
-                            <input type="hidden" name="id" value="<?php echo $id;?>" />
+                            <input type="hidden" name="id" value="<?= $id ?>" />
                             <input type="hidden" name="type" value="create" />
                       </td>
                       <td><input type="submit" name="submit" value="投稿" /></td>
