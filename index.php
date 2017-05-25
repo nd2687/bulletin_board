@@ -57,7 +57,7 @@ if (isset($_POST['search_word'])) {
 
     <?php if( isset($user) ): ?>
 
-        <br />Welcome <?= $user['email']; ?>
+        <br />Welcome <?= $user['email'] ?>
         <br /><br />You are successfully logged in!
         <br /><br />
 
