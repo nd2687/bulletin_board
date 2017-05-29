@@ -1,14 +1,23 @@
 <?php
 
-$server = 'localhost';
-$username = 'root';
-$password = '';
-$database = 'bulletin_board';
+class Database {
 
-try{
-    $pdo = new PDO("mysql:host=$server;dbname=$database;", $username, $password);
-} catch(PDOException $e){
-    die( "Connection failed: " . $e->getMessage());
+private $server = 'localhost';
+private $username = 'root';
+private $password = '';
+private $database = 'bulletin_board';
+protected $pdo;
+
+   function __construct() {
+     try{
+         $this->pdo = new PDO("mysql:host=$this->server;dbname=$this->database;", $this->username, $this->password);
+     } catch(PDOException $e){
+         die( "Connection failed: " . $e->getMessage());
+     }
+
+   }
+
+
 }
 
 ?>

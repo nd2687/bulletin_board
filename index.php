@@ -3,6 +3,7 @@
 session_start();
 
 require 'database.php';
+require 'class/thread.php';
 
 if (isset($_SESSION['user_id'])) {
 
@@ -18,27 +19,9 @@ if (isset($_SESSION['user_id'])) {
     }
 }
 
-if (isset($_POST['search_word'])) {
-      $search_word = $_POST['search_word'];
-      $like_search_word = "'%".$search_word."%'";
-      $sql = "SELECT * FROM threads WHERE title LIKE " . $like_search_word . " order by created_at desc";
-      $rows = $pdo->query($sql);
-} else {
-      $sql = "SELECT * FROM threads order by created_at desc";
-      $rows = $pdo->query($sql);
-
-      $type = (@$_POST['type']) ?: null;
-      $id = (@$_POST['id']) ?: null;
-
-      if ($type=='delete' && isset($id)) {
-
-        $stmt = $pdo->prepare("DELETE FROM threads WHERE id = :id");
-        $stmt->execute(':id', $id);
-
-        header("Location: index.php");
-      }
-}
-
+$obj = new Thread();
+$hoge = $obj->get_thread_list(isset($_POST['search_word']));
+var_dump('check:', $hoge);
 ?>
 
 <!DOCTYPE html>
