@@ -1,6 +1,6 @@
 <?php
 
-require 'database.php';
+require 'database0.php';
 
 $type = (@$_POST['type']) ?: null;
 

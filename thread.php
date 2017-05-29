@@ -1,17 +1,9 @@
 <?php
 
-require 'database.php';
+require 'class/thread.php';
 
-$id = $_GET['id'];
-
-$sql_thread = $pdo->prepare("SELECT * FROM threads where id = :id");
-$sql_thread->bindParam(':id', $id);
-$sql_thread->execute();
-$thread = $sql_thread->fetch();
-
-$sql_res = $pdo->prepare("SELECT * FROM responses where thread_id = :id order by created_at desc");
-$sql_res->bindParam(':id', $id);
-$sql_res->execute();
+$obj = new Thread();
+$rows = $obj->show_thread();
 
 ?>
 
@@ -21,20 +13,20 @@ $sql_res->execute();
     <meta http-equiv="content-type" content="text/html"; charset=utf-8 />
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-    <title><?= $thread['title'] ?></title>
+    <title><?= $rows['title'] ?></title>
 </head>
 <body>
     <div class="header">
         <a href="/">Bulletin Board</a>
     </div>
 
-    <p>作成日時:<?= $thread['created_at'] ?></p>
-    <span>Thread title:</span><h1><?= $thread['title'] ?></h1>
-    <b><?= $thread['body'] ?></b>
+    <p>作成日時:<?= @$rows['created_at'] ?></p>
+    <span>Thread title:</span><h1><?= @$rows['title'] ?></h1>
+    <b><?= @$rows['body'] ?></b>
 
     <p><a href="res_new.php?id=<?= $id ?>">書き込み</a></p>
-
-    <?php while($res = $sql_res->fetch() ): ?>
+<?php /*
+    <?php  while($res = $sql_res->fetch() ): ?>
         <hr />
         <p class="res-body"><?= $res['body'] ?></p>
 
@@ -52,6 +44,6 @@ $sql_res->execute();
         </form>
 
     <?php endwhile; ?>
-
+*/ ?>
 </body>
 </html>
