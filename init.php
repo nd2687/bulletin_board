@@ -12,5 +12,6 @@ define( "_CLASS_DIR", "class/");
 require_once( _CLASS_DIR    . "Base.php");
 require_once( _CLASS_DIR    . "Thread.php");
 require_once( _CLASS_DIR    . "Response.php");
+require_once( _CLASS_DIR    . "User.php");
 
 ?>

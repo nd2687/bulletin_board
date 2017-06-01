@@ -2,14 +2,13 @@
 
 session_start();
 
-require 'database.php';
+require_once './init.php';
+
+$obj = new User();
 
 if (isset($_SESSION['user_id'])) {
 
-    $records = $pdo->prepare('SELECT id,email,password FROM users WHERE id = :id');
-    $records->bindParam(':id', $_SESSION['user_id']);
-    $records->execute();
-    $results = $records->fetch(PDO::FETCH_ASSOC);
+    $results = $obj->get_userinfo_by_id();
 
     $user = NULL;
 
@@ -18,8 +17,8 @@ if (isset($_SESSION['user_id'])) {
     }
 }
 
-$sql = $pdo->prepare('UPDATE users set unsubscribe_flag = 1');
-$sql->execute();
+$user_id = $_SESSION['user_id'];
+$obj->unsubscribe($user_id);
 
 require 'logout.php';
 

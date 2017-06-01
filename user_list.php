@@ -1,10 +1,9 @@
 <?php
 
-require 'database.php';
+require_once './init.php';
 
-//論理削除以外
-$sql = "SELECT * FROM users WHERE unsubscribe_flag = 0";
-$result = $pdo->query($sql);
+$obj = new User();
+$result = $obj->get_enable_user_list();
 
 ?>
 

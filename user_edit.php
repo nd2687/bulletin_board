@@ -2,16 +2,14 @@
 
 session_start();
 
-require 'database.php';
+require_once './init.php';
 
 $message = '';
 
 if (isset($_SESSION['user_id'])) {
 
-    $records = $pdo->prepare('SELECT id,email,password FROM users WHERE id = :id');
-    $records->bindParam(':id', $_SESSION['user_id']);
-    $records->execute();
-    $results = $records->fetch(PDO::FETCH_ASSOC);
+    $obj = new User();
+    $results = $obj->get_userinfo_by_id();
 
     $user = NULL;
 
@@ -25,25 +23,9 @@ $type = (@$_POST['type']) ?: null;
 
 if ($type == 'patch') {
 
-    if (isset($_POST['password'])) {
-        $stmt = $pdo->prepare("UPDATE users set email=:email, password=:password where id=:id");
-        $email = ($_POST['email']) ?: $user['email'];
-        $stmt->bindParam(':email', $email);
-        $password_hash = password_hash($_POST['password'], PASSWORD_BCRYPT);
-        $stmt->bindParam(':password', $password_hash);
-        $stmt->bindParam(':id', $user['id']);
-    } else {
-        $stmt = $pdo->prepare("UPDATE users set email=:email where id=:id");
-        $email = ($_POST['email']) ?: $user['email'];
-        $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':id', $user['id']);
-    }
+    $obj = new User();
+    $message = $obj->update($user);
 
-    if ($stmt->execute()):
-        $message = 'Successfully updated your profile';
-    else:
-        $message = 'Sorry there must have been an issue updating your profile';
-    endif;
 }
 
 ?>

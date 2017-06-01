@@ -6,24 +6,23 @@ if (isset($_SESSION['user_id'])) {
     header("Location: /");
 }
 
-require 'database.php';
+require_once './init.php';
 
 if (isset($_POST['email']) && isset($_POST['password'])):
 
-    $records = $pdo->prepare('SELECT * FROM users WHERE email = :email');
-    $records->bindParam(':email', $_POST['email']);
-    $records->execute();
-    $results = $records->fetch(PDO::FETCH_ASSOC);
+    $obj = new User();
+    $results = $obj->get_userinfo();
 
     $message = '';
 
-    if ((int)$results['unsubscribe_flag'] !== 0) {
+    // 0 or 1? before 0
+    if ((int)@$results['unsubscribe_flag'] !== 0) {
 
         $message = 'This account is unsubscribed.';
 
     } else {
 
-        if(count($results) > 0 && password_verify($_POST['password'], $results['password']) ){
+        if (count(@$results) > 0 && password_verify($_POST['password'], $results['password'])) {
 
             $_SESSION['user_id'] = $results['id'];
             header("Location: /");
