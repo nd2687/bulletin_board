@@ -15,7 +15,14 @@ Copyright (c) 1997-2017 The PHP Group
 Zend Engine v3.1.0, Copyright (c) 1998-2017 Zend Technologies
 ```
 
-## Thread table
+## DB Setup
+```
+$ mysql -uroot bulletin_board < sql/threads.sql
+$ mysql -uroot bulletin_board < sql/responses.sql
+$ mysql -uroot bulletin_board < sql/users.sql
+```
+
+## Threads table
 
 ```
 +------------+------------------+------+-----+---------+----------------+
@@ -34,7 +41,7 @@ Zend Engine v3.1.0, Copyright (c) 1998-2017 Zend Technologies
 * 検索
 * ~~スレッド化~~
 
-## Response table
+## Responses table
 
 ```
 +------------+------------------+------+-----+---------+----------------+
@@ -53,7 +60,7 @@ Zend Engine v3.1.0, Copyright (c) 1998-2017 Zend Technologies
 * 削除
 * 編集
 
-## User table
+## Users table
 
 ```
 +------------------+------------------+------+-----+---------+----------------+
