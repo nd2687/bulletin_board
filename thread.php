@@ -4,6 +4,8 @@ require_once './init.php';
 
 $obj = new Thread();
 $rows = $obj->show_thread();
+$rows_res = $obj->show_response_of_this_thread($_GET['id']);
+$id = $_GET['id'];
 
 ?>
 
@@ -25,8 +27,8 @@ $rows = $obj->show_thread();
     <b><?= @$rows['body'] ?></b>
 
     <p><a href="res_new.php?id=<?= @$id ?>">書き込み</a></p>
-<?php /*
-    <?php  while($res = $sql_res->fetch() ): ?>
+
+    <?php foreach( (array)@$rows_res as $res ): ?>
         <hr />
         <p class="res-body"><?= $res['body'] ?></p>
 
@@ -43,7 +45,6 @@ $rows = $obj->show_thread();
             <input class="delete-button" type="submit" name="submit" value="削除" />
         </form>
 
-    <?php endwhile; ?>
-*/ ?>
+    <?php endforeach; ?>
 </body>
 </html>

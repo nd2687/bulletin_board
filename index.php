@@ -66,7 +66,7 @@ $rows = $obj->get_thread_list();
     <p><a href="thread_new.php">スレッド作成</a></p>
 
     <table align="center">
-      <?php foreach( (array)@$rows as $thread ): ?>
+    <?php foreach( (array)@$rows as $thread ): ?>
         <tr>
             <td class="thread-list">
                 <a href="thread.php?id=<?= $thread['id'] ?>"><?= $thread['title'] ?></a>

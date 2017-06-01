@@ -29,11 +29,20 @@ class Thread extends Base {
       $sql_res->execute();
 */
     }
+
     public function delete_thread($id) {
       $stmt = $this->pdo->prepare("DELETE FROM threads WHERE id = :id");
       $stmt->bindParam(':id', $id);
       $stmt->execute();
       header("Location: index.php");
+    }
+
+    public function show_response_of_this_thread($id) {
+        $sql_res = $this->pdo->prepare("SELECT * FROM responses where thread_id = :id order by created_at desc");
+        $sql_res->bindParam(':id', $id);
+        $sql_res->execute();
+        $result = $sql_res->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
     }
 }
 

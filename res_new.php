@@ -1,32 +1,18 @@
 <?php
 
-require 'database.php';
+require_once './init.php';
 
-$id = ($_GET['id']) ?: null;
+$id = (@$_GET['id']) ?: null;
 $type = (@$_POST['type']) ?: null;
-
 $message = '';
 
 if ($type == 'create') {
-  $id = $_POST['id'];
-
-  $name = $_POST['name'] ?: "名無し";
-
-  if (isset($_POST['body'])) {
-
-      $sql_res = $pdo->prepare("INSERT INTO responses set thread_id = :id, name = :name, body = :body, created_at = now()");
-      $sql_res->bindParam(':id', $id);
-      $sql_res->bindParam(':name', $name);
-      $sql_res->bindParam(':body', $_POST['body']);
-      $sql_res->execute();
-
-      header("Location: thread.php?id=" . $id);
-
-  } else {
-
-      $message = "At least the text alone.";
-
-  }
+    if (isset($_POST['body'])) {
+        $obj = new Response();
+        $obj->create_response();
+    } else {
+        $message = "At least the text alone.";
+    }
 }
 
 ?>
