@@ -1,6 +1,6 @@
 # bulletin_board
 
-![クラス図](./class_image.png)
+![クラス図](./images/class_image.png)
 
 ## Built-in web server
 
