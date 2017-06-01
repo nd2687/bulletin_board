@@ -24,7 +24,7 @@ $rows = $obj->show_thread();
     <span>Thread title:</span><h1><?= @$rows['title'] ?></h1>
     <b><?= @$rows['body'] ?></b>
 
-    <p><a href="res_new.php?id=<?= $id ?>">書き込み</a></p>
+    <p><a href="res_new.php?id=<?= @$id ?>">書き込み</a></p>
 <?php /*
     <?php  while($res = $sql_res->fetch() ): ?>
         <hr />
