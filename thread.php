@@ -1,6 +1,6 @@
 <?php
 
-require 'class/thread.php';
+require_once './init.php';
 
 $obj = new Thread();
 $rows = $obj->show_thread();

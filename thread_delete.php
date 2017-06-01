@@ -1,6 +1,6 @@
 <?php
 
-require 'class/thread.php';
+require_once './init.php';
 
 $type = ($_POST['type']) ?: null;
 $id = ($_POST['id']) ?: null;
