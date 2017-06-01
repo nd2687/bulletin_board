@@ -2,24 +2,25 @@
 
 class User extends Base {
 
-    public function get_userinfo() {
-        $records = $this->pdo->prepare('SELECT * FROM users WHERE email = :email');
-        $records->bindParam(':email', $_POST['email']);
-        $records->execute();
-        $results = $records->fetch(PDO::FETCH_ASSOC);
-        return $results;
-    }
-
-    public function get_userinfo_by_id() {
+    public function get_by_id() {
         $records = $this->pdo->prepare('SELECT id,email,password FROM users WHERE id = :id');
         $records->bindParam(':id', $_SESSION['user_id']);
         $records->execute();
         $results = $records->fetch(PDO::FETCH_ASSOC);
+
         return $results;
     }
 
-    public function regist_user() {
+    public function get_by_email() {
+        $records = $this->pdo->prepare('SELECT * FROM users WHERE email = :email');
+        $records->bindParam(':email', $_POST['email']);
+        $records->execute();
+        $results = $records->fetch(PDO::FETCH_ASSOC);
 
+        return $results;
+    }
+
+    public function regist() {
         // Enter the new user in the database
         $sql = "INSERT INTO users (email, password) VALUES (:email, :password)";
         $stmt = $this->pdo->prepare($sql);
@@ -49,7 +50,6 @@ class User extends Base {
         } else {
             $stmt = $this->pdo->prepare("UPDATE users set email=:email where id=:id");
             $email = ($_POST['email']) ?: $user['email'];
-            var_dump('check:',$user['id']);
             $stmt->bindParam(':email', $email);
             $stmt->bindParam(':id', $user['id']);
         }
@@ -73,6 +73,7 @@ class User extends Base {
         //論理削除以外
         $sql = "SELECT * FROM users WHERE unsubscribe_flag = 0";
         $result = $this->pdo->query($sql);
+
         return $result;
     }
 }

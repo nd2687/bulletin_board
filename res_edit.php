@@ -12,11 +12,11 @@ if (empty($id) && empty($thread_id)) {
   $thread_id = ($_POST['thread_id']) ?: null;
 }
 
-$obj = new Response();
-$res = $obj->show_response($id);
+$res = new Response();
+$rows = $res->show($id);
 
 if ($type == 'patch') {
-    $obj->update_response($id, $thread_id);
+    $res->update($id, $thread_id);
 }
 
 ?>
@@ -38,11 +38,11 @@ if ($type == 'patch') {
       <table align="center">
         <tr>
           <th>名前</th>
-          <td><input type="text" name="name" value="<?= $res['name'] ?>"/></td>
+          <td><input type="text" name="name" value="<?= $rows['name'] ?>"/></td>
         </tr>
         <tr>
           <th>内容</th>
-          <td><textarea name="body"><?= $res['body'] ?></textarea></td>
+          <td><textarea name="body"><?= $rows['body'] ?></textarea></td>
         </tr>
         <tr>
           <td>

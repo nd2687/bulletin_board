@@ -11,8 +11,8 @@ if (isset($_SESSION['user_id'])) {
 $message = '';
 
 if (!empty($_POST['email']) && !empty($_POST['password'])):
-    $obj = new User();
-    $message = $obj->regist_user();
+    $user = new User();
+    $message = $user->regist();
 endif;
 
 ?>

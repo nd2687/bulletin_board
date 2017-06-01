@@ -8,8 +8,8 @@ $message = '';
 
 if (isset($_SESSION['user_id'])) {
 
-    $obj = new User();
-    $results = $obj->get_userinfo_by_id();
+    $u = new User();
+    $results = $u->get_by_id();
 
     $user = NULL;
 
@@ -23,8 +23,8 @@ $type = (@$_POST['type']) ?: null;
 
 if ($type == 'patch') {
 
-    $obj = new User();
-    $message = $obj->update($user);
+    $u = new User();
+    $message = $u->update($user);
 
 }
 

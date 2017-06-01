@@ -8,8 +8,8 @@ $message = '';
 
 if ($type == 'create') {
     if (isset($_POST['body'])) {
-        $obj = new Response();
-        $obj->create_response();
+        $res = new Response();
+        $res->create();
     } else {
         $message = "At least the text alone.";
     }

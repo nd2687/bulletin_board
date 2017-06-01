@@ -2,9 +2,9 @@
 
 require_once './init.php';
 
-$obj = new Thread();
-$rows = $obj->show_thread();
-$rows_res = $obj->show_response_of_this_thread($_GET['id']);
+$thre = new Thread();
+$rows = $thre->show();
+$rows_res = $thre->show_response($_GET['id']);
 $id = $_GET['id'];
 
 ?>

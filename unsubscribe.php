@@ -8,7 +8,7 @@ $obj = new User();
 
 if (isset($_SESSION['user_id'])) {
 
-    $results = $obj->get_userinfo_by_id();
+    $results = $obj->get_by_id();
 
     $user = NULL;
 

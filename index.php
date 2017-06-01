@@ -6,8 +6,8 @@ require_once './init.php';
 
 if (isset($_SESSION['user_id'])) {
 
-    $obj = new User();
-    $results = $obj->get_userinfo_by_id();
+    $u = new User();
+    $results = $u->get_by_id();
 
     $user = NULL;
 
@@ -16,8 +16,8 @@ if (isset($_SESSION['user_id'])) {
     }
 }
 
-$obj = new Thread();
-$rows = $obj->get_thread_list();
+$thre = new Thread();
+$rows = $thre->get_list();
 
 ?>
 

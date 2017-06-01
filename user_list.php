@@ -2,8 +2,8 @@
 
 require_once './init.php';
 
-$obj = new User();
-$result = $obj->get_enable_user_list();
+$u = new User();
+$result = $u->get_enable_user_list();
 
 ?>
 

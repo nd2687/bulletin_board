@@ -6,8 +6,8 @@ $type = ($_POST['type']) ?: null;
 $id = ($_POST['id']) ?: null;
 
 if ($type=='delete' && isset($id)) {
-  $obj = new Thread();
-  $obj->delete_thread($id);
+  $thre = new Thread();
+  $thre->delete($id);
 }
 
 ?>

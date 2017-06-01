@@ -10,8 +10,8 @@ require_once './init.php';
 
 if (isset($_POST['email']) && isset($_POST['password'])):
 
-    $obj = new User();
-    $results = $obj->get_userinfo();
+    $user = new User();
+    $results = $user->get_by_email();
 
     $message = '';
 
