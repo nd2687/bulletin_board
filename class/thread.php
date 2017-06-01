@@ -1,8 +1,6 @@
 <?php
 
-require_once(dirname(__FILE__)."/../database.php");
-
-class Thread extends Database {
+class Thread extends Base {
 
     public function get_thread_list() {
       if (isset($_POST['search_word'])) {
