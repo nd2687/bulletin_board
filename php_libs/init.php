@@ -1,5 +1,7 @@
 <?php
 
+error_reporting(1);
+
 define("_DB_USER", "root");
 define("_DB_PASS", "");
 define("_DB_HOST", "localhost");
