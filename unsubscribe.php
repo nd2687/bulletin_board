@@ -2,7 +2,7 @@
 
 session_start();
 
-require_once './init.php';
+require_once './php_libs/init.php';
 
 $obj = new User();
 

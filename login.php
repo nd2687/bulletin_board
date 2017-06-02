@@ -6,7 +6,7 @@ if (isset($_SESSION['user_id'])) {
     header("Location: /");
 }
 
-require_once './init.php';
+require_once './php_libs/init.php';
 
 if (isset($_POST['email']) && isset($_POST['password'])):
 

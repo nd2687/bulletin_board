@@ -1,6 +1,6 @@
 <?php
 
-require_once './init.php';
+require_once './php_libs/init.php';
 
 session_start();
 

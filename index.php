@@ -2,7 +2,7 @@
 
 session_start();
 
-require_once './init.php';
+require_once './php_libs/init.php';
 
 if (isset($_SESSION['user_id'])) {
 

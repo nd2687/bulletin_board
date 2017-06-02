@@ -1,6 +1,6 @@
 <?php
 
-require_once './init.php';
+require_once './php_libs/init.php';
 
 $u = new User();
 $result = $u->get_enable_user_list();
