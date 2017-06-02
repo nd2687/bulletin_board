@@ -5,6 +5,7 @@
 ## Built-in web server
 
 ```
+$ cd php_libs/
 $ php -S 0.0.0.0:8000
 ```
 
