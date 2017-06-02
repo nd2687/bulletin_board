@@ -1,22 +1,3 @@
-<?php
-
-require_once './php_libs/init.php';
-
-$id = (@$_GET['id']) ?: null;
-$type = (@$_POST['type']) ?: null;
-$message = '';
-
-if ($type == 'create') {
-    if (isset($_POST['body'])) {
-        $res = new Response();
-        $res->create();
-    } else {
-        $message = "At least the text alone.";
-    }
-}
-
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,9 +14,9 @@ if ($type == 'create') {
         <a href="/">Bulletin Board</a>
     </div>
 
-    <?php if(isset($message)): ?>
-        <p><?= $message ?></p>
-    <?php endif; ?>
+    {if ($Message)}
+        <p>{$Message}</p>
+    {/if}
 
     <form method="post" action="res_new.php">
           <table align="center">
@@ -49,7 +30,7 @@ if ($type == 'create') {
                 </tr>
                 <tr>
                       <td>
-                            <input type="hidden" name="id" value="<?= $id ?>" />
+                            <input type="hidden" name="id" value="{$ID}" />
                             <input type="hidden" name="type" value="create" />
                       </td>
                       <td><input type="submit" name="submit" value="投稿" /></td>

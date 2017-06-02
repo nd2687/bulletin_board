@@ -73,6 +73,7 @@ class User extends Base {
         //論理削除以外
         $sql = "SELECT * FROM users WHERE unsubscribe_flag = 0";
         $result = $this->pdo->query($sql);
+        $result = $result->fetchAll(PDO::FETCH_ASSOC);
 
         return $result;
     }

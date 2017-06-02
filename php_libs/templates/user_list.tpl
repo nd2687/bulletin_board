@@ -1,12 +1,3 @@
-<?php
-
-require_once './php_libs/init.php';
-
-$u = new User();
-$result = $u->get_enable_user_list();
-
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,9 +17,9 @@ $result = $u->get_enable_user_list();
     <h1>User list</h1>
 
     <ul>
-    <?php while($user = $result->fetch() ): ?>
-        <li><?= $user['id'] ?> | <?= $user['email'] ?></li>
-    <?php endwhile; ?>
+    {foreach from=$UserLists item=user}
+        <li>{$user['id']} | {$user['email']}</li>
+    {/foreach}
     </ul>
 </body>
 </html>

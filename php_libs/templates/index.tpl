@@ -1,26 +1,3 @@
-<?php
-
-session_start();
-
-require_once './php_libs/init.php';
-
-if (isset($_SESSION['user_id'])) {
-
-    $u = new User();
-    $results = $u->get_by_id();
-
-    $user = NULL;
-
-    if (count($results) > 0) {
-        $user = $results;
-    }
-}
-
-$thre = new Thread();
-$rows = $thre->get_list();
-
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,9 +12,8 @@ $rows = $thre->get_list();
         <a href="/">Bulletin Board</a>
     </div>
 
-    <?php if( isset($user) ): ?>
-
-        <br />Welcome <?= $user['email'] ?>
+    {if ($user)}
+        <br />Welcome {$user['email']}
         <br /><br />You are successfully logged in!
         <br /><br />
 
@@ -45,14 +21,13 @@ $rows = $thre->get_list();
         <a href="user_edit.php">Change profile?</a> /
         <a href="unsubscribe.php" onclick="return confirm('Are you sure?\nIt cannot be undone.');">Unsubscribe?</a> /
         <a href="user_list.php">User list</a>
-
-    <?php else: ?>
-
+    {else}
         <h1>Please Login or Register</h1>
         <a href="login.php">Login</a> or
         <a href="register.php">Register</a>
+    {/if}
 
-    <?php endif; ?>
+ 
 
     <form method="post" action="index.php">
 
@@ -64,21 +39,21 @@ $rows = $thre->get_list();
     <p><a href="thread_new.php">スレッド作成</a></p>
 
     <table align="center">
-    <?php foreach( (array)@$rows as $thread ): ?>
+    {foreach from=$Lists item=thread}
         <tr>
             <td class="thread-list">
-                <a href="thread.php?id=<?= $thread['id'] ?>"><?= $thread['title'] ?></a>
+                <a href="thread.php?id={$thread['id']}">{$thread['title']}</a>
             </td>
             <td><?= $thread['created_at'] ?></td>
             <td>
                 <form method='post' action='thread_delete.php' onsubmit="return confirm('Are you sure?\nIt cannot be undone.');">
                     <td><input type="hidden" name="type" value="delete" /></td>
-                    <td><input type="hidden" name="id" value=<?php echo $thread['id'];?> /></td>
+                    <td><input type="hidden" name="id" value={$thread['id']} /></td>
                     <td><input class="delete-button" type="submit" name="submit" value="削除" /></td>
                 </form>
             </td>
         </tr>
-    <?php endforeach; ?>
+    {/foreach}
     </table>
 </body>
 </html>

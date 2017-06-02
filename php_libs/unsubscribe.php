@@ -2,7 +2,8 @@
 
 session_start();
 
-require_once './php_libs/init.php';
+require_once './init.php';
+require_once './libs/Smarty.class.php';
 
 $obj = new User();
 
