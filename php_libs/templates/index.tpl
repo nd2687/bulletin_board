@@ -27,8 +27,6 @@
         <a href="register.php">Register</a>
     {/if}
 
- 
-
     <form method="post" action="index.php">
 
       <input type="text" placeholder="search word here." name="search_word">

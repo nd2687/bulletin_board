@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html"; charset=utf-8 />
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-    <title><?= $rows['title'] ?></title>
+    <title>{$Thread['title']}</title>
 </head>
 <body>
     <div class="header">
@@ -33,7 +33,6 @@
             <input type="hidden" name="id" value={$ID} />
             <input class="delete-button" type="submit" name="submit" value="削除" />
         </form>
-
     {/foreach}
 </body>
 </html>

@@ -11,7 +11,7 @@ class Response extends Base {
 
     public function create() {
         $id = $_POST['id'];
-        $name = $_POST['name'] ?: "名無し";
+        $name = @$_POST['name'] ?: "名無し";
         $body = $_POST['body'];
 
         $sql_res = $this->pdo->prepare("INSERT INTO responses set thread_id = :id, name = :name, body = :body, created_at = now()");
